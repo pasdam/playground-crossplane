@@ -4,6 +4,7 @@ REPO_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 include $(REPO_DIR)/crossplane/Makefile
 include $(REPO_DIR)/k3d/Makefile
+include $(REPO_DIR)/localstack/Makefile
 
 ## help: Display this help screen
 .PHONY: help

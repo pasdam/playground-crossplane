@@ -1,0 +1,3 @@
+service:
+  edgeService:
+    nodePort: 30066
