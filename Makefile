@@ -2,6 +2,7 @@ REPO_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 .DEFAULT_GOAL := help
 
+include $(REPO_DIR)/crossplane/Makefile
 include $(REPO_DIR)/k3d/Makefile
 
 ## help: Display this help screen
