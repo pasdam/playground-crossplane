@@ -1,9 +1,9 @@
-CROSSPLANE_WORKING_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+CROSSPLANE_WORKING_DIR := $(REPO_DIR)/crossplane
 
 ## crossplane-install: Install crossplane in the k8s cluster
 .PHONY: crossplane-install
 crossplane-install: | _crossplane-repo-install
-	@helm upgrade --install crossplane --namespace crossplane-system --create-namespace --wait --timeout 300s crossplane-stable/crossplane
+	@helm upgrade --install crossplane --namespace crossplane-system --create-namespace --wait --timeout 300s crossplane-stable/crossplane -f $(CROSSPLANE_WORKING_DIR)/helm-values.yaml
 
 # Internal targets
 # ----------------
