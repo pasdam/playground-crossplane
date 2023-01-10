@@ -1,0 +1,22 @@
+apiVersion: k3d.io/v1alpha4
+kind: Simple
+metadata:
+  name: playground-crossplane
+servers: 1
+image: rancher/k3s:v1.22.16-k3s1
+ports:
+  - port: 8080:80
+    nodeFilters:
+      - loadbalancer
+  - port: 30000-30100:30000-30100
+    nodeFilters:
+      - server:0
+options:
+  k3s:
+    extraArgs:
+      - arg: --disable=traefik
+        nodeFilters:
+          - server:*
+      - arg: --service-node-port-range=30000-30100
+        nodeFilters:
+          - server:*
