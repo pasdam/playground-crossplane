@@ -1,3 +1,5 @@
+image:
+  tag: 1.3.1
 service:
   edgeService:
-    nodePort: 30066
+    targetPort: 30066
