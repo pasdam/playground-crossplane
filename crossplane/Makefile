@@ -4,6 +4,7 @@ CROSSPLANE_WORKING_DIR := $(REPO_DIR)/crossplane
 .PHONY: crossplane-install
 crossplane-install: | _crossplane-repo-install
 	@helm upgrade --install crossplane --namespace crossplane-system --create-namespace --wait --timeout 300s crossplane-stable/crossplane -f $(CROSSPLANE_WORKING_DIR)/helm-values.yaml
+	@kubectl apply -f "$(CROSSPLANE_WORKING_DIR)/aws-provider-config.yaml"
 
 # Internal targets
 # ----------------
