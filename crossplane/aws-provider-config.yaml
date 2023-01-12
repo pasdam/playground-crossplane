@@ -14,7 +14,7 @@ stringData:
 apiVersion: aws.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
-  name: aws-provider
+  name: aws-provider-config
 spec:
   credentials:
     source: Secret
