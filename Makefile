@@ -14,3 +14,8 @@ help:
 		/^[a-zA-Z0-9\-]+: .*/ { printf "\033[36m%-30s\033[0m%s\n", $$1, $$2; next }; \
 		/^ +.*/ { printf "\033[36m%-30s\033[0m", ""; printf $$2; for (i=3; i<=NF; i++) { printf ":%s", $$i }; printf "\n" } \
 		'
+
+## init: Initialize the requirements
+.PHONY: init
+init: | crossplane-init localhost-init
+	

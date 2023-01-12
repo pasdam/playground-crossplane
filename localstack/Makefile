@@ -1,5 +1,11 @@
 LOCALSTACK_WORKING_DIR := $(REPO_DIR)/localstack
 
+## localstack-init: Initialize localstack requirements
+.PHONY: localstack-init
+localstack-init: | _localstack-repo-install
+	@docker pull localstack/localstack:1.3.1
+	@k3d image import --cluster $(CLUSTER_NAME) localstack/localstack:1.3.1
+
 ## localstack-install: Install localstack in the k8s cluster
 .PHONY: localstack-install
 localstack-install: | _localstack-repo-install
