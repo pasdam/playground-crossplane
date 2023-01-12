@@ -1,0 +1,47 @@
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: d-product-public-subnet-1a
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    region: me-south-1
+    availabilityZone: me-south-1b
+    cidrBlock: 10.0.1.0/24
+    vpcIdRef:
+      name: d-product-vpc
+    mapPublicIPOnLaunch: true
+  providerConfigRef:
+    name: aws-provider-config
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: d-product-public-subnet-1b
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    region: me-south-1
+    availabilityZone: me-south-1c
+    cidrBlock: 10.0.2.0/24
+    vpcIdRef:
+      name: d-product-vpc
+    mapPublicIPOnLaunch: true
+  providerConfigRef:
+    name: aws-provider-config
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: d-product-public-subnet-1c
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    region: me-south-1
+    availabilityZone: me-south-1c
+    cidrBlock: 10.0.3.0/24
+    vpcIdRef:
+      name: d-product-vpc
+    mapPublicIPOnLaunch: true
+  providerConfigRef:
+    name: aws-provider-config
