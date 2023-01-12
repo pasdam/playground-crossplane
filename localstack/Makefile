@@ -15,6 +15,15 @@ localstack-install: | _localstack-repo-install
 .PHONY: localstack-generate-template
 localstack-generate-template:
 	@helm template localstack --namespace localstack localstack-repo/localstack -f $(LOCALSTACK_WORKING_DIR)/helm-values.yaml
+
+## localstack-get-vpcs: Get VPCs in localstack
+.PHONY: localstack-get-vpcs
+localstack-get-vpcs:
+	@echo "VPCs:"
+	@aws ec2 describe-vpcs --region=me-south-1 --endpoint-url=http://localhost:30066 | jq '[ .Vpcs[] | { id: .VpcId, cidr: .CidrBlock, name: .Tags[] | select(.Key == "crossplane-name") | .Value } ]'
+	@echo "Subnets:"
+	@aws ec2 describe-subnets --region=me-south-1 --endpoint-url=http://localhost:30066 | jq '[ .Subnets[] | { id: .SubnetId, cidr: .CidrBlock, name: (.Tags // []) | .[] | select(.Key == "crossplane-name") | .Value } ]'
+
 # Internal targets
 # ----------------
 
