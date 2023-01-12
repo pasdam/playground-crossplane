@@ -11,6 +11,10 @@ localstack-init: | _localstack-repo-install
 localstack-install: | _localstack-repo-install
 	@helm upgrade --install localstack --namespace localstack --create-namespace --wait --timeout 300s localstack-repo/localstack -f $(LOCALSTACK_WORKING_DIR)/helm-values.yaml
 
+## localstack-generate-template: Generate the localstack helm templare
+.PHONY: localstack-generate-template
+localstack-generate-template:
+	@helm template localstack --namespace localstack localstack-repo/localstack -f $(LOCALSTACK_WORKING_DIR)/helm-values.yaml
 # Internal targets
 # ----------------
 
